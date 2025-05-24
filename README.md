@@ -44,7 +44,8 @@ Depois siga as instruções na tela para informar o alvo e o número de requisi�
 ## Estrutura do projeto
 
 /attack-ddos
-├── ddios.py
+├── main.py
+├── README.md
 
 ## 🚨 Disclaimer
 
