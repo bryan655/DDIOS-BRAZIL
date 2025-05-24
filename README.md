@@ -24,6 +24,19 @@ Este projeto foi criado apenas para fins educacionais. Não utilize este script 
 ✅ Modo verbose para visualização em tempo real  
 ✅ Banner ASCII personalizado
 
+## 📥 Como clonar este repositório
+
+Abra o terminal e execute:git clone https://github.com/bryan655/DDIOS-BRAZIL.git
+
+Depois, entre na pasta clonada:
+
+cd DDIOS-BRAZIL
+
+Se quiser acessar diretamente a pasta `main`:
+
+cd DDIOS-BRAZIL/main
+
+
 ## Requisitos
 
 - Python 3.x
