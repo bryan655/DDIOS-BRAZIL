@@ -11,8 +11,8 @@ import os
 def clear_terminal():
     print("\033c", end="")  # ANSI escape code
 
-# Chame:
 clear_terminal()
+
 def print_banner():
     banner = """
 ░▒▓███████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓███████▓▒░ 
@@ -182,7 +182,6 @@ def http_post_flood(url, threads, duration):
 
     countdown(stats)
 
-# --- Menu principal ---
 def main():
     print_banner()
     while True:
