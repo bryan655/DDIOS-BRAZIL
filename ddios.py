@@ -7,6 +7,7 @@ import sys
 import requests
 from sys import stdout
 
+clear
 def print_banner():
     banner = """
 ░▒▓███████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓███████▓▒░ 
