@@ -6,6 +6,10 @@ import socket
 import sys
 import requests
 from sys import stdout
+import os
+
+def clear_terminal():
+    os.system('clear')
 
 def print_banner():
     banner = """
