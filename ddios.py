@@ -186,10 +186,10 @@ def main():
     print_banner()
     while True:
         print("\nEscolha o tipo de ataque:")
-        print("1) Layer 4 - UDP Flood Avançado")
-        print("2) Layer 4 - TCP Flood Avançado")
-        print("3) Layer 7 - HTTP GET Flood Avançado")
-        print("4) Layer 7 - HTTP POST Flood Avançado")
+        print("1) UDP Flood Avançado")
+        print("2)- TCP Flood Avançado")
+        print("3)- HTTP GET Flood Avançado")
+        print("4)- HTTP POST Flood Avançado")
         print("0) Sair")
 
         choice = input("Opção: ").strip()
