@@ -193,7 +193,7 @@ def main():
 
         choice = input("Opção: ").strip()
         if choice == "0":
-            print("Saindo...")
+            print("Obrigado por ter utilizado o DDIOS, até logo...")
             sys.exit(0)
 
         if choice in ["1", "2"]:
