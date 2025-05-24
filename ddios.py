@@ -9,8 +9,10 @@ from sys import stdout
 import os
 
 def clear_terminal():
-    os.system('clear')
+    print("\033c", end="")  # ANSI escape code
 
+# Chame:
+clear_terminal()
 def print_banner():
     banner = """
 ░▒▓███████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓███████▓▒░ 
